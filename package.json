@@ -1,6 +1,6 @@
 {
   "name": "spo-auth",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The SharePoint Online authentication library. Can be used to get a security token, fed-auth cookies, request digest.",
   "main": "index.js",
   "scripts": {
