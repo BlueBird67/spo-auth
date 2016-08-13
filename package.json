@@ -15,7 +15,7 @@
     "url": "git+https://github.com/boades/spo-auth.git"
   },
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {    
     "cookie": "^0.3.1",
     "xml2js": "^0.4.17"
   }
