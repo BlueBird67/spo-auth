@@ -10,6 +10,14 @@
     "name": "Oleksii Udovychenko",
     "email": "boades.net@gmail.com"
   },
+  "keywords": [
+    "sharepoint",
+    "office365",
+    "auth",
+    "rest",
+    "sharepoint auth",
+    "spo"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/boades/spo-auth.git"
