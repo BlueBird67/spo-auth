@@ -41,3 +41,50 @@ These methods are very straightforward:
 * `getRequestDigest` calls `getFedCookies` and then makes a request to //yourdomain.sharepoint.com/_api/contextinfo to get FormDigestValue
 
 After that you will be able to use SPO REST interfaces from your code, just pass a correct header or cookie with your request.
+
+#### Examples
+
+Get information about a root web:
+
+    var spAuth = require("spo-auth"),
+        https = require('https');
+
+    var config = {
+        host : "devserver.sharepoint.com",
+        login : "LOGIN@devserver.onmicrosoft.com",
+        password : "PASSWORD"
+    };
+
+    spAuth.getRequestDigest(config, function (err, data) {
+        console.log(data);
+        
+        var requestOptions = {            
+            host: data.host,
+            path: '/_api/web',
+            headers: {
+                'Accept': 'application/json;odata=verbose',
+                'Content-type': 'application/json;odata=verbose',
+                'Cookie': 'FedAuth=' + data.FedAuth + '; rtFa=' + data.rtFa,
+                'X-RequestDigest': data.digest
+            }
+        };
+        
+        var req = https.request(requestOptions, function (res) {
+            var resp = '';
+
+            res.setEncoding('utf8');
+            res.on('data', function (chunk) {
+                resp += chunk;
+            });
+
+            res.on('error', function (err) {
+                console.log(err);
+            })
+
+            res.on('end', function () {
+                console.log(JSON.parse(resp));
+            });
+        })
+
+        req.end('');
+    });
