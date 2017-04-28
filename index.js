@@ -64,7 +64,6 @@ function parseSecurityToken(data, callback){
     });
 
     parser.on('end', function (js) {
-      const util = require('util');
         if (js['S:Envelope']['S:Body'][0]['S:Fault']) {
             var error = js['S:Envelope']['S:Body'][0]['S:Fault'][0]['S:Detail'][0]['psf:error'][0]['psf:internalerror'][0]['psf:text'];
             callback(error, null);
